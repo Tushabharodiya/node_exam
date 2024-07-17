@@ -23,7 +23,7 @@ export let userNavbar = [
 
 export let adminNavbar = [
     {
-        path: "/dashbord",
+        path: "/",
         name: "dashbord"
     },
     {

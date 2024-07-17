@@ -9,55 +9,57 @@
 
 }
 
-body {
-  font-family: "Sniglet", system-ui;
-  flex-grow: 1;
-}
-
 * {
-  box-sizing: border-box;
   margin: 0;
+  box-sizing: border-box;
 }
 
 a {
   text-decoration: none;
 }
 
+body {
+  font-family: "Sniglet", system-ui;
+}
+
 img {
-  width: 100%;
-  margin: 0;
+  max-width: 100%;
+  display: block;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
 }
 
 ul,
 li {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
 .container {
-  max-width: 1320px;
-  padding: 0 15px;
+  max-width: 1140px;
   margin: 0 auto;
+  padding: 0 15px;
 }
 
-input:focus {
-  outline: none;
-}
 /* =====================button=================== */
-.button{
-  padding:8px 20px;
+.button {
+  padding: 8px 20px;
   background-color: var(--primary);
   color: var(--white);
   text-transform: capitalize;
   border-radius: 16px;
   border: transparent;
 }
+
 /* ======================header================== */
 .navbar {
   padding: 10px 0;
   background-color: #f1f1f1;
-  
+  z-index: 100;
 }
 
 .navbar .navbar-nav .nav-item a {
@@ -75,32 +77,40 @@ input:focus {
 .student table {
   border: 1px solid rgb(231, 229, 229);
 }
-.student table th,td{
+
+.student table th,
+td {
   border-bottom: 1px solid rgb(231, 229, 229);
 }
-.student table th{
+
+.student table th {
   font-weight: 500;
   color: var(--font-color);
 }
-.student .model-btn button{
+
+.student .model-btn button {
   margin-top: 50px;
 }
-.student .modal label{
+
+.student .modal label {
   display: block;
   margin: 10px 0;
 }
-.student-list .trash{
+
+.student-list .trash {
   background-color: transparent;
   border: transparent;
   color: var(--primary);
 }
+
 /*=====================sidebar=============== */
-.side_bar{
+.side_bar {
   margin-top: 70px;
   overflow-y: scroll;
   height: 100vh;
 }
-.side_bar ul li a{
+
+.side_bar ul li a {
   margin: 4px 0;
   padding: 3px 10px;
   /* width: 100%; */
@@ -110,8 +120,9 @@ input:focus {
   background-color: rgb(248, 245, 245);
   border-radius: 10px;
 }
+
 /* ====================update_model============== */
-.update_model{
+.update_model {
   width: 400px;
   padding: 30px;
   background-color: var(--white);
@@ -120,11 +131,91 @@ input:focus {
   top: 30px;
   left: 35%;
 }
-.update_model label{
+
+.update_model label {
   display: block;
   margin: 10px 0;
 }
-.update_model .closebtn{
+
+.update_model .closebtn {
   background-color: transparent;
-  
+
+}
+
+.banner {
+  background-image: url("https://htmldemo.net/kidschool/kidschool/images/slider/1.jpg");
+  height: 90vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.banner .banner-img img {
+  /* width: 500px; */
+  position: absolute;
+  bottom: 0;
+  right: 100px;
+}
+
+.banner .banner-data h2 {
+  font-size: 78px;
+  color: var(--white);
+  line-height: 70px;
+}
+
+.banner .banner-data button {
+  color: var(--primary);
+  margin-top: 30px;
+}
+
+.banner .banner-data h3 {
+  font-size: 48px;
+  color: var(--white);
+}
+
+/* ==============list-car============= */
+.list-card {
+  padding: 20px;
+  background-color: #f1f1f1;
+  text-align: center;
+  margin-top: 30px;
+}
+.list-card img{
+  margin: 0 auto;
+}
+
+.list-card .card-data span {
+  color: var(--h-color);
+}
+.list-card .card-data p {
+  color: var(--h-color);
+}
+
+/* =====================login=================== */
+.login{
+  /* background-color: var(--primary); */
+  height: 100vh;
+}
+.login .login-logo {
+  height: 100vh;
+  flex-grow: 1;
+  justify-content: center;
+  background-color: var(--primary);
+}
+.login .login-logo h2{
+  color: var(--white);
+}
+.login-info .login-form{
+  height: 100vh;
+}
+.login-info .card{
+width: 400px;
+}
+.login-info .card label{
+  display: block;
+  margin: 20px 0;
+}
+.login-info .card button{
+  background-color: var(--primary);
 }

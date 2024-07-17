@@ -1,10 +1,18 @@
 import React, { useState } from "react"
 import { adminNavbar, userNavbar } from "./data"
+import { useNavigate } from "react-router-dom"
 
 let Navbar = ({ element }) => {
 
+    let navigate = useNavigate()
 
     const [data, setdata] = useState(element === "user" ? userNavbar : adminNavbar)
+
+
+    let logout = () => {
+        localStorage.removeItem("loggedin")
+        navigate("/login")
+    }
 
     return (
         <>
@@ -32,7 +40,8 @@ let Navbar = ({ element }) => {
                         </div>
                     </div>
                     <div className="user">
-                        <span><i className="fa-regular fa-circle-user"></i></span>
+                        <span><i className="fa-regular fa-circle-user pe-4"></i></span>
+                        <button className="button" onClick={logout}>logout</button>
                     </div>
                 </div>
             </nav>
