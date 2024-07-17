@@ -1,17 +1,61 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { GET_STUDENT_PENDING } from '../action'
+import { DELETE_STUDENT_PENDING, GET_STUDENT_PENDING, POST_STUDENT_PENDING, UPDATE_STUDENT_PENDING } from '../action'
 
 const Manage = () => {
 
-    
+    let name = useRef();
+    let roll_no = useRef();
+    let standerd = useRef();
+    const [view, setview] = useState({ name: '', roll_no: '', standerd: '' })
+    const [model, setmodel] = useState("none")
+
     let student = useSelector((state) => state.adminReducer)
 
     let dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch({ type: GET_STUDENT_PENDING })
-    }, [])
+   
+
+    //add new student
+
+    let addStudent = () => {
+        let students = {
+            name: name.current.value,
+            roll_no: roll_no.current.value,
+            standerd: standerd.current.value,
+        }
+
+        dispatch({ type: POST_STUDENT_PENDING, payload: students })
+    }
+
+
+    //remove student
+
+    let remove = (student) => {
+        console.log(student);
+        dispatch({ type: DELETE_STUDENT_PENDING, payload: student })
+    }
+
+    //update
+
+    let viewData = (val) => {
+        setview(val)
+        setmodel("block")
+    }
+
+    let closee = () => {
+        setmodel("none")
+    }
+
+    let handle = (e) => {
+        setview({ ...view, [e.target.name]: e.target.value })
+    }
+    let save = (e) => {
+        // e.preventDefault();
+        setmodel("none")
+        dispatch({ type: UPDATE_STUDENT_PENDING, payload: view })
+    }
+
 
     return (
         <div>
@@ -30,16 +74,30 @@ const Manage = () => {
                                 </div>
                                 <div className="modal-body">
                                     <form>
-                                      <label>name : <input type="text" className="form-control" /></label>
-                                      <label>Roll number : <input type="number" className="form-control" /></label>
-                                      <label>Class : <input type="number" className="form-control" /></label>
+                                        <label>name : <input type="text" className="form-control" name='name' ref={name} /></label>
+                                        <label>Roll number : <input type="number" className="form-control" name='roll_no' ref={roll_no} /></label>
+                                        <label>standerd : <input type="number" className="form-control" name='standerd' ref={standerd} /></label>
                                     </form>
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="button">Send message</button>
+                                    <button className="button" onClick={addStudent}>add student</button>
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div className="update_model" style={{ display: `${model}` }}>
+                        {/* <form onSubmit={save}> */}
+                        <div className="close-btn d-flex justify-content-end ">
+                            <button className='bg-white border-0' onClick={closee}><i className="fa-regular fa-circle-xmark"></i></button>
+                        </div>
+                        <label>Name: <input type="text" name='name' className="form-control" value={view.name} onChange={handle} /></label>
+                        <label>Roll No : <input type="number" name='roll_no' className="form-control" value={view.roll_no} onChange={handle} /> </label>
+                        <label>standerd : <input type="number" name='standerd' className="form-control" value={view.standerd} onChange={handle} /> </label>
+                        <div className="view-btn d-flex justify-content-center mt-3">
+                            <button className='button' onClick={save}>save</button>
+                        </div>
+                        {/* </form> */}
                     </div>
 
 
@@ -47,19 +105,26 @@ const Manage = () => {
                         <table className='w-100 mt-3' cellPadding="10px">
                             <thead>
                                 <tr>
+                                    <th>no</th>
                                     <th>name</th>
                                     <th>roll no</th>
-                                    <th>class</th>
+                                    <th>standerd</th>
+                                    <th>delete</th>
+                                    <th>update</th>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    student.student?.map((val,ind) => (
+                                    student.student?.map((val, ind) => (
                                         <React.Fragment key={ind}>
                                             <tr>
+                                                <td>{ind + 1}</td>
                                                 <td>{val.name}</td>
-                                                <td>{val.roll_number}</td>
-                                                <td>{val.class}</td>
+                                                <td>{val.roll_no}</td>
+                                                <td>{val.standerd}</td>
+                                                <td><button className='trash' onClick={() => remove(val.id)}><i className="fa-solid fa-trash"></i></button></td>
+                                                <td><button className='trash' onClick={() => viewData(val)} ><i className="fa-regular fa-pen-to-square"></i></button></td>
                                             </tr>
                                         </React.Fragment>
                                     ))

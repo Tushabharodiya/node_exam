@@ -80,7 +80,7 @@ input:focus {
 }
 .student table th{
   font-weight: 500;
-  color: var(--primary);
+  color: var(--font-color);
 }
 .student .model-btn button{
   margin-top: 50px;
@@ -88,6 +88,11 @@ input:focus {
 .student .modal label{
   display: block;
   margin: 10px 0;
+}
+.student-list .trash{
+  background-color: transparent;
+  border: transparent;
+  color: var(--primary);
 }
 /*=====================sidebar=============== */
 .side_bar{
@@ -98,10 +103,28 @@ input:focus {
 .side_bar ul li a{
   margin: 4px 0;
   padding: 3px 10px;
-  width: 100%;
+  /* width: 100%; */
   display: inline-block;
   text-transform: capitalize;
   color: var(--primary);
   background-color: rgb(248, 245, 245);
   border-radius: 10px;
+}
+/* ====================update_model============== */
+.update_model{
+  width: 400px;
+  padding: 30px;
+  background-color: var(--white);
+  box-shadow: 0px 3px 10px rgb(170, 170, 170);
+  position: fixed;
+  top: 30px;
+  left: 35%;
+}
+.update_model label{
+  display: block;
+  margin: 10px 0;
+}
+.update_model .closebtn{
+  background-color: transparent;
+  
 }

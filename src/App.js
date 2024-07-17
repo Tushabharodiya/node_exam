@@ -5,10 +5,18 @@ import Manage from "./redux/admin/pages/Manage";
 import Student from "./redux/user/pages/Student";
 import Contact from "./redux/user/pages/Contact";
 import Sidebar from "./redux/component/Sidebar";
+import { useDispatch } from "react-redux";
+import { GET_STUDENT_PENDING } from "./redux/admin/action";
+import { useEffect } from "react";
 
 function App() {
 
-  let role = "admin";
+  let role = "user";
+  let dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch({ type: GET_STUDENT_PENDING })
+  }, [])
 
   if (role == "admin") {
     return (
